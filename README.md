@@ -14,8 +14,13 @@ Date: 19/10/2026
 
 ## 1. What you are building
 
-A Selenium script that opens a real browser, logs in, creates a task,
-marks it complete, and logs out. No clicking by hand. The script does it.
+This project uses Selenium WebDriver and pytest to automate testing of a web-based task management application.
+
+The automated tests open a browser, log in, create a task, mark a task as completed, and log out. The tests run automatically without requiring manual interaction with the browser.
+
+The project uses the Page Object Model (POM) to separate page interactions from test cases and pytest-html to generate an HTML test report with screenshots.
+
+Application under test: https://pytodo-lab5.onrender.com
 
 ## 2. Setup, step by step
 
@@ -57,25 +62,59 @@ browser, and check that logging in with username `demo` and password
 `demo1234` works, and that you can create a task. This confirms the app
 itself is reachable before you automate it.
 
-## 3. Files in this repository
+## Project Structure
 
-| File | Purpose |
-|---|---|
-| `pages/login_page.py` | Finished example. Read this first, it is your pattern. |
-| `pages/task_page.py` | Has TODO markers. You complete this. |
-| `test_ui.py` | Has TODO markers. You complete this. |
-| `conftest.py` | Already complete. Opens and closes the browser for each test, takes a screenshot after every test. |
+File or directory
 
-## 4. What is a Page Object, in one paragraph
+Purpose
 
-Instead of writing raw Selenium commands inside every test, you write one
-class per page. The class holds where things are on that page (the
-locators) and what you can do on that page (the methods). A test then
-reads as a short story: open the login page, log in, create a task. If
-the web page changes later, only the Page Object file changes. The tests
-stay the same.
+pages/login_page.py
 
-## 5. The rule for this lab: no time.sleep
+Contains the login page locators and methods for opening the login page, entering credentials, and checking login errors.
+
+pages/task_page.py
+
+Contains the page objects and methods for creating tasks, accessing the task list, and marking tasks as completed.
+
+pages/__init__.py
+
+Identifies pages as a Python package.
+
+test_ui.py
+
+Contains the automated Selenium test cases.
+
+conftest.py
+
+Configures pytest fixtures, the browser driver, the application URL, and test setup.
+
+requirements.txt
+
+Lists the Python dependencies required to run the project.
+
+report.html
+
+Generated HTML report containing test results and links to screenshots.
+
+screenshots/
+
+Contains screenshots captured during test execution.
+
+.gitignore
+
+Prevents generated files, Python caches, and unnecessary local files from being committed.
+
+## 6. Page Object Model (POM)
+
+The Page Object Model separates web page interactions from the test logic.
+
+Each page object defines the locators used to find web elements and methods that perform actions on those elements.
+
+For example, LoginPage handles login-related actions, while NewTaskPage and TaskListPage handle task creation and task completion.
+
+This structure improves readability, reusability, and maintainability. If a page locator changes, the relevant page object can be updated without unnecessarily rewriting every test case.
+
+## 7. The rule for this lab: no time.sleep
 
 A page does not always finish loading or updating the instant you click
 something. Marking a task complete on this app takes about 0.7 seconds
@@ -96,7 +135,7 @@ This waits up to 10 seconds, checking repeatedly, and moves on the
 instant the condition is true. Do not write `time.sleep` anywhere in
 `pages/task_page.py` or `test_ui.py`.
 
-## 6. Your task
+## 8. Your task
 
 1. Open `pages/login_page.py` and read it fully. This is a complete,
    working example.
@@ -108,13 +147,33 @@ instant the condition is true. Do not write `time.sleep` anywhere in
 ```bash
 pytest test_ui.py -v --html=report.html --self-contained-html
 ```
+Test case
+
+Purpose
+
+test_login_with_valid_credentials
+
+Verifies that a user can log in with valid credentials.
+
+test_login_with_invalid_credentials
+
+Verifies that invalid credentials produce the expected login error.
+
+test_create_task
+
+Verifies that a new task can be created and that the success banner appears.
+
+test_mark_task_complete_and_logout
+
+Creates a task, identifies the task created by the test, marks it as completed, waits for the status update, and verifies that logout returns to the login page.
+
 
 5. Open `report.html` in a browser. Every test should show a screenshot.
    A passing test's last screenshot should show the completed state
    (success banner shown, or task marked Completed). A failing test's
    screenshot shows you where it broke.
 
-## 7. Submit
+## 9. Submit
 
 Commit `pages/task_page.py`, `test_ui.py`, and `report.html` to your repo.
 
