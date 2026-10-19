@@ -64,45 +64,18 @@ itself is reachable before you automate it.
 
 ## Project Structure
 
-File or directory
-
-Purpose
-
-pages/login_page.py
-
-Contains the login page locators and methods for opening the login page, entering credentials, and checking login errors.
-
-pages/task_page.py
-
-Contains the page objects and methods for creating tasks, accessing the task list, and marking tasks as completed.
-
-pages/__init__.py
-
-Identifies pages as a Python package.
-
-test_ui.py
-
-Contains the automated Selenium test cases.
-
-conftest.py
-
-Configures pytest fixtures, the browser driver, the application URL, and test setup.
-
-requirements.txt
-
-Lists the Python dependencies required to run the project.
-
-report.html
-
-Generated HTML report containing test results and links to screenshots.
-
-screenshots/
-
-Contains screenshots captured during test execution.
-
-.gitignore
-
-Prevents generated files, Python caches, and unnecessary local files from being committed.
+| File or directory | Purpose |
+|---|---|
+| `pages/login_page.py` | Contains the login page locators and methods for opening the login page, entering credentials, and checking login errors. |
+| `pages/task_page.py` | Contains the page objects and methods for creating tasks, accessing the task list, and marking tasks as completed. |
+| `pages/__init__.py` | Identifies `pages` as a Python package. |
+| `test_ui.py` | Contains the automated Selenium test cases. |
+| `conftest.py` | Configures pytest fixtures, the browser driver, the application URL, and test setup. |
+| `requirements.txt` | Lists the Python dependencies required to run the project. |
+| `report.html` | Generated HTML report containing test results and links to screenshots. |
+| `screenshots/` | Contains screenshots captured during test execution. |
+| `.gitignore` | Prevents generated files, Python caches, and unnecessary local files from being committed. |
+| `README.md` | Provides project documentation, setup instructions, test execution steps, and submission details. |
 
 ## 6. Page Object Model (POM)
 
@@ -147,26 +120,12 @@ instant the condition is true. Do not write `time.sleep` anywhere in
 ```bash
 pytest test_ui.py -v --html=report.html --self-contained-html
 ```
-Test case
-
-Purpose
-
-test_login_with_valid_credentials
-
-Verifies that a user can log in with valid credentials.
-
-test_login_with_invalid_credentials
-
-Verifies that invalid credentials produce the expected login error.
-
-test_create_task
-
-Verifies that a new task can be created and that the success banner appears.
-
-test_mark_task_complete_and_logout
-
-Creates a task, identifies the task created by the test, marks it as completed, waits for the status update, and verifies that logout returns to the login page.
-
+| Test case | Purpose |
+|---|---|
+| `test_login_with_valid_credentials` | Verifies that a user can log in successfully using valid credentials. |
+| `test_login_with_invalid_credentials` | Verifies that the application displays an appropriate error message when invalid credentials are entered. |
+| `test_create_task` | Verifies that a new task can be created successfully and that the success banner appears. |
+| `test_mark_task_complete_and_logout` | Creates a task with a unique title, identifies the correct task, marks it as completed, waits for the status to update to `Completed`, and verifies that logging out returns the user to the login page. |
 
 5. Open `report.html` in a browser. Every test should show a screenshot.
    A passing test's last screenshot should show the completed state
