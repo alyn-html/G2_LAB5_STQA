@@ -1,5 +1,13 @@
 # Lab 5: Web UI Automation (Selenium)
 
+Testers (pair): GROUP 2 
+1. Alya Nabihah bt Ahmad Kamarzaman (22012109)
+2. Mohammad Syarafuddin Bin Mohd Zaidi (22006949)
+3. ⁠Nurul Hafizhah Binti Zainal Abidin (22005732)
+4. ⁠Muhammad Adam Muzir Bin Mohamad Azmi (22006801)
+
+Date: 19/10/2026
+
 **Duration:** 2 hours  **Work mode:** groups
 
 **Application under test:** `https://pytodo-lab5.onrender.com` (a running PyTodo app with login)
